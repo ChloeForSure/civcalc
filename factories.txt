@@ -1,0 +1,128 @@
+charcoal maker
+512,charcoal
+
+52,charcoal
+
+124,charcoal
+-
+64,oak log
+
+124,charcoal
+-
+64,spruce log
+
+124,charcoal
+-
+64,birch log
+
+124,charcoal
+-
+64,jungle log
+
+124,charcoal
+-
+64,acacia log
+
+124,charcoal
+-
+64,dark oak log
+
+124,charcoal
+-
+64,crimson stem
+
+124,charcoal
+-
+64,warped stem
+
+60,charcoal
+-
+64,coal
+
+
+diamond pickaxe smith
+96,diamond
+36,essence
+
+9,diamond
+10,essence
+4,charcoal
+
+15,diamond pickaxe
+-
+15,diamond
+4,charcoal
+
+
+diamond axe smith
+64,diamond
+24,essence
+
+6,diamond
+2,essence
+4,charcoal
+
+30,diamond axe
+-
+15,diamond
+4,charcoal
+
+
+advanced ore smelter
+128,diamond
+256,iron
+128,essence
+32,debris
+32,emerald block
+512,coal
+
+8,diamond
+8,emerald
+1,debris
+4,essence
+4,charcoal
+
+1,netherite
+-
+12,debris
+24,emerald
+8,gold
+8,essence
+4,charcoal
+
+
+netherite pickaxe smith
+12,netherite
+24,diamond
+36,essence
+
+1,netherite
+3,diamond
+3,essence
+4,charcoal
+
+8,netherite pickaxe
+-
+3,netherite
+6,diamond
+4,charcoal
+
+
+crafting
+0,diamond
+
+0,diamond
+
+1,emerald block
+-
+9,emerald
+
+1,gold
+-
+0,diamond
+
+1,coal
+-
+1,diamond
+
+

@@ -1,0 +1,2 @@
+3,2,diamond pickaxe
+1,1,diamond axe
