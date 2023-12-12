@@ -1,5 +1,3 @@
-import numpy as np
-
 #Loads exchange
 #returns a dict, where the keys are the different itemname
 #And each value is the sell price for the item
@@ -163,7 +161,12 @@ def calculatePrice(name,eData,fData,getRecipe=True,returnFactory=False):
             print(f"The price of {name} couldn't be calculated.")
         return None
     else: #If it has calculateable recipes, finds the cheapest one.
-        ind=np.argmin(potRec) #Yes this is the only line in the whole code that uses numpy. I'm lazy.
+        ind=0
+        min = potRec[0]
+        for i in range(1,len(potRec)):
+            if potRec[i] < min:
+                min = potRec[i]
+                ind=i
         if getRecipe: #Prints things nicely.
             print(f"The cost of a(n) {name} is {potRec[ind]}d\n")
             print(f"Using the following recipe in the {potRecPath[ind][0]}:\nInput")
