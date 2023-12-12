@@ -1,7 +1,16 @@
-1,1,diamond
-2,25,iron
-2,6,essence
-14,2,debris
-2,8,spruce log
-2,7,oak log
-2,16,emerald
+#Fomat should follow the followong pattern:
+#k , l , name
+#Where 
+#k is the price in diamonds
+#l is the number of items for that price
+#name is the name of the item, all letters in lower case.
+
+
+#Pavia Exchange
+1  , 1  , diamond
+2  , 25 , iron
+2  , 6  , essence
+14 , 2  , debris
+2  , 8  , spruce log
+2  , 7  , oak log
+2  , 16 , emerald

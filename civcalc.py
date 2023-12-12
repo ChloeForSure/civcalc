@@ -9,9 +9,16 @@ def loadExchanges(path):
     f=open(path,"r")
     data={}
     lines=f.readlines()
-    for line in lines:
-        l=line.split(',')
-        data[l[2][:-1]]=float(l[0])/float(l[1])
+    for i in range(len(lines)):
+        l=lines[i].replace('\n','').strip()
+        if l=="":
+            continue
+        elif l[0]=="#":
+            continue
+        ls=l.split(',')
+        if len(ls)!=3:
+            raise Exception(f"Line {i+1} is not properly fomated.")
+        data[ls[2].strip()]=float(ls[0].strip())/float(ls[1].strip())
     return data
 
 #Loads sell prices
@@ -25,10 +32,17 @@ def loadSellPrices(path):
     f=open(path,"r")
     data={}
     lines=f.readlines()
-    for line in lines:
-        l=line.split(',')
-        data[l[2][:-1]]=float(l[0])/float(l[1])
-    return data 
+    for i in range(len(lines)):
+        l=lines[i].replace('\n','').strip()
+        if l=="":
+            continue
+        elif l[0]=="#":
+            continue
+        ls=l.split(',')
+        if len(ls)!=3:
+            raise Exception(f"Line {i+1} is not properly fomated.")
+        data[ls[2].strip()]=float(ls[0].strip())/float(ls[1].strip())
+    return data
 
 
 #This is way overcomplicated
@@ -76,49 +90,53 @@ def loadFactories(path):
     crec=[{},{}]#current recipe
     crecs=[]#current recipes for the factory
     for i in range(len(lines)):
+        currentLine=lines[i].replace("\n","").strip()
+        if len(currentLine)!=0:
+            if currentLine[0]=='#':
+                continue
         if state==0:
-            if(lines[i]!="\n"):
-                data[lines[i][:-1]]={}
-                cfn=lines[i][:-1]
+            if(currentLine!=""):
+                data[currentLine]={}
+                cfn=currentLine
                 state=1
         elif state==1:
-            if(lines[i]=="\n"):
+            if(currentLine==""):
                 data[cfn]["setup"]=temp
                 temp={}
                 state=2
             else:
-                l=lines[i].split(',')
-                temp[l[1][:-1]]=int(l[0])
+                l=currentLine.split(',')
+                temp[l[1].strip()]=int(l[0].strip())
         elif state==2:
-            if(lines[i]=="\n"):
+            if(currentLine==""):
                 data[cfn]["repair"]=temp
                 temp={}
                 state=3
             else:
-                l=lines[i].split(',')
-                temp[l[1][:-1]]=int(l[0])
+                l=currentLine.split(',')
+                temp[l[1].strip()]=int(l[0].strip())
         elif state==3:
-            if(lines[i]=="\n"):
+            if(currentLine==""):
                 data[cfn]["recipes"]=crecs
                 crecs=[]
                 state=0
-            elif(lines[i]=="-\n"):
+            elif(currentLine=="-"):
                 crec[0]=temp
                 temp={}
                 state=4
             else:
-                l=lines[i].split(',')
-                temp[l[1][:-1]]=int(l[0])
+                l=currentLine.split(',')
+                temp[l[1].strip()]=int(l[0].strip())
         elif state==4:
-            if(lines[i]=="\n"):
+            if(currentLine==""):
                 crec[1]=temp
                 crecs.append(crec)
                 crec=[{},{}]
                 temp={}
                 state=3
             else:
-                l=lines[i].split(',')
-                temp[l[1][:-1]]=int(l[0])
+                l=currentLine.split(',')
+                temp[l[1].strip()]=int(l[0].strip())
     if(state!=0):
         raise Exception("Did not finish at the end of a factory")
     return data
@@ -219,7 +237,7 @@ def calculateRepairPrice(name,eData,fData):
 #Retrn time is the number of cycles, within which we want to get a return on investment on the factory
 def calculateProfitability(name,eData,fData,sData,printing=True, returnTime=15):
     if name in sData.keys():
-        sellprice=sData[name][0]/sData[name][1] #Gets sellprice of the item
+        sellprice=sData[name]#Gets sellprice of the item
         getprice=calculatePrice(name,eData,fData,False,True) #Calculates price of the item
         if getprice==None:
             print(f"The price of {name} couldn't be calculated.")
